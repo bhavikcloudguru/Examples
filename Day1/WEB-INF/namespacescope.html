@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <!-- Importing the stylesheet for the widgets -->
+    <link rel="stylesheet" type="text/css" href="ext/resources/css/ext-all.css">
+    <!-- Importing the Ext JS library -->
+    <script type="text/javascript" src="ext/ext-all-dev.js"></script>
+    <script type="text/javascript">
+
+        Ext.onReady(function() {
+
+            // How to scope variables that are not global 
+            Ext.namespace('ZvaradExtJS.Samples');
+
+            ZvaradExtJS.Samples.var1 = 'var1 (local)';
+            // ZvaradExtJS.Samples.var1 is limited to the ZvaradExtJS.Samples namespace
+            var var1 = 'var1 (global)';
+            // var1 is a global variable
+
+            document.write(ZvaradExtJS.Samples.var1 + '<br/>');
+            document.write(var1 + '<br/>');
+
+            // A custom type inside the ZvaradExtJS.Samples namespace
+            ZvaradExtJS.Samples.Person = function() {
+                return {
+                    firstName: '',
+                    lastName: '',
+                    show: function() {
+                        alert(this.firstName + ' ' + this.lastName);
+                    }
+                }
+            }
+
+            var person1 = new ZvaradExtJS.Samples.Person();
+            person1.firstName = 'Maxx';
+            person1.lastName = 'Krish';
+            person1.show();
+
+
+        });
+    
+    </script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

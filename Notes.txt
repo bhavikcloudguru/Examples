@@ -1,0 +1,409 @@
+ExtJS 5 Training Mumbai 04/08/2014
+
+
+Basics of EXTJS javascript framework
+
+*extjs concentrates on component model. 
+(visual components--> widgets,model class extension, themes.)
+
+*extjs5---> Object BASED and not object oriented.
+
+ExtCore--> utilities non visual..DOM manipulation,date adn time manipulation
+
+
+Why extjs
+*Mature and stable
+*Lots of widgets
+*consitent look and feel.(theme concept)
+*Good doc and community support.
+(SASS--> Simply Awesome StyleSheets)
+*Tablet support.
+
+
+Component, Containers, Events(LIstener on handler)
+
+
+fundamentals ( Compoents,panel,layout)
+Common Stuff(onReady(0.config opts, xtype,applyTo, contentEL..)
+Debuggin(alert(),console.log, console.dir())
+
+*AJAX () Asynchronous Javascript and XML
+
+Clean separation of presentationa dn data
+thin client which connets to web service.
+Data encapsulated in JSON/XML
+
+
+Ext.data
+                Store
+                *DataReader
+                *DataProxy
+                Record
+CRUD operations are made possible with help of DataReader,DataProxy
+
+Ext.Ajax.request()
+BasicForm.load() and submit()
+Element.load()
+
+
+
+
+*******A Basic EXTJS 5 Application******
+
+If you follow the structure recommneded,its beneficial in migrating to other future versions.
+root html file serves to load the bootStrap files
+
+ext.js , ext-all.js --> used in PROD env
+
+ext-debug.js--- more debug information
+ext-dev.js --> eliminated in 5
+ext-rtl-*.js  Right to Left for some Right To Left Langauges viz. Arabic
+
+when running in prod mode, link to minified files.(outside the build folder)
+and when running in dev mode, link to full blown file.(inside build)
+
+app.js is the only file you need to include in the application rest all class loaded.
+
+
+Ext.Loader---> Class loader
+From extjs4.1 Class loader are implictly triggered.
+
+
+MVC and MV-VM model is supported ny ExtJS5
+M-Model
+C-Controller
+V-View
+VM-ViewModel
+
+*autoCreateViewport--> creates a default viewport for the application. 
+Usually entire size of the Browser. But can be a subsection also.
+autoCraeteViewport--> public static void main() for visual part.
+It also sets the nameSpace.
+MyApp(assuming you name your app as MyApp)
+
+MyApp is mapped to app folder. 
+autoCreateViewPOrt---> tries to initialise MyApp.view.Viewport.js (Make sure a file with that name is present in the said path)
+
+*Ext.define---> a new Class definition
+
+Custom classes created by us should not be starting with Ext.xyz as Ext.xyz is reserved for sencha classes
+*Ext.getBody()--> utility element which gets the reference to 'body' tag.
+requires--> classLoading purpose
+
+for eg.
+
+Ext.define('MyApp.view.Viewport',{
+extend:'MyApp.view.MyViewport',
+renderTo: Ext.getBody(),
+requires:[
+'MyApp.view.MyViewport'
+]
+});
+
+as we extend it with a class, that class has to be loaded at the runtime when the extend is encountered. So we use requires. (like import in java)
+
+For viewport, Ext.container.Viewport is the root of hierarchy.
+
+
+******>> In ext , every class we create implicitly extends from Ext.Base.
+
+initComponent:function(){}
+--> define all the things defined by the container
+
+2 keywords within a class.
+this and self.
+this--> reference current object representation of the class
+self--> reference the class
+
+xtype-> alias of the class
+
+me.callParent(Arguments)--> update the properties of the parents up in the hierarchy
+
+Ext.Application({
+views:[
+'xyz','abc'
+]
+})
+
+
+the views property tells the application before hand about its components. You can use the views[] arrays later on to dynamically load the view.
+
+It is not mandatory to declare that. THIS STATEMENT DOESNOT INSTANTIATE THE CLASS.
+
+
+
+EXTJS creates SPA--> Single Page Application
+
+
+
+********************************************************************************************************************
+Afternoon session ...Mumbai
+
+ExtJS Core
+                
+                Ext.Base--> root of all objects in ExtJS
+
+                Ext is the Main Namespace for Sencha Libraries
+
+CLASS SYSTEM
+
+How to create a class??
+                Ext.define("MyApp.xyz",{})
+
+
+normal property and config property(the property which will affect the behaviour of the class.)
+
+MyApp.a.b.v.c---> no need for a.b.v.c folder structure..... this is required only if you want to have a automatic class loading.
+
+Ways to instantiate Classes.
+
+1. var abc= Ext.create('MyApp.xyz.ADF');)
+
+2. var abc2= Ext.create('MyApp.xyz.ADF'{
+
+name:...
+lastname:....
+
+//adding new props..
+widt:..
+ht:..
+
+//only this instance will have these 2 extra properties.
+
+})
+
+3. var abc3= new MyApp.client();
+
+
+
+
+INHERITANCE
+
+Ext.define("MyApp.Category",{
+
+})
+
+fields:--> if the class extends model, then it means that it will ahve fields with the specified name.
+if the class doesnt extend model, then it woudl mean that field is an array with objects...
+
+
+MIXINS---> multiple inheritance.
+You can extend atmost one class.
+if you want to have properties of 3 classes, then  I need to do multilevel inheritance.
+
+
+now in constructors..... config--> if you pass config properties..
+and options--> if you send normal properties...
+
+
+CONFIG
+initConfig()--->implicitly called in extjs 5 commercial version.(doesnt work on trial gpl version)
+
+STATICS
+Static property of the class which contains static representation of a class.
+You cant use objects to call static methods/properties. Only Class can be used for calling static method/property
+
+SINGLETON
+whenever anything is marked as singleton , everything becomes as public static final methods/variables.
+Creating the singleton will FAIL the program.
+
+ALIAS
+define an alias to a CLASS.
+
+CLASS LOADER..
+
+Ext.require('class',function)
+function is executed only when class is found.
+
+
+
+ExtJS 5 Training Mumbai day 2 08/05/2014
+
+(yesterdays context)
+                Privates-if you declare something as private in a specific scope, then in inheritance this component should not be over-ridden
+                (not yet supported by GPL/Trial versions)
+
+                
+                
+                
+Components and Events
+
+                *Observer/Observable
+                Mark the class as an Observable if you want to observe any event on that class.
+                
+                use
+                1.Object.on('event_name',function(){});
+                2. Object.addListener('event_name',function(){})
+                Both are of the same type.
+                
+                consider Button.
+                It has a click event defined..now you have one more way to define the event
+                click:function(){}
+                
+                
+                Tip- Many components have 'menu' property. This mean they can render a menu
+                
+                Inline definition and global declaration
+                -Inline is more compact and better memory management. No re-usability.
+                eg. component defined in a component.
+                -If the code is not wise enough then you may end up with lots of unused components with the Global Declaration Method.
+                -tbfill: toolbar Fill, to keep spaces between menus of your toolbar.
+                working: Add one button on toolbar.
+                Add tbfill. The tbfill will begin after the end of the first element and extent upto the end.
+                When you add the next component , its added to the end of the tbfill and tbfill is reduced.
+                So the new button is placed at the right most corner rite now.
+                
+                
+Compoenents/Container/Layout
+
+Any EXTJS component is finally converted to native HTML/CSS/JavaScript at the browser display.
+Any visual entity will extend from COMPONENT. (directly or indirectly)
+
+Every Component has a lifecycle. Various Stages and in what sequence they are activated.
+Every lifecycle phase have a callback method.
+
+this.el ---> element which represents the current component.
+
+this.el.down---> down is one level below the current element.
+
+me.destroy()---> marks the object for Garbage collection.
+some methods in the life cycle in the order they execute
+initComponent beforeRender onRender afterRender beforeDestroy onDestroy
+
+
+Container
+-Ext.container.Container is the root of all container.
+Container contains components.
+
+Default component of the container is the component.
+
+Panel is the most commonly used container. Flat container.
+
+On toolbar, by default you add Button... 
+
+WINDOW
+- a must for all dialog type of component.
+-implicitly invisible.
+
+
+LAYOUT
+-By default the layout of the container is AUTO
+
+Bordered Layout--> North East West South and Center. Freely resizing objects should not be placed in center as they will occupy the entire space
+and leave no space for the rest NEWS components
+
+
+ExtJS5 Training day 3 Mumbai 06/08/2014
+
+Forms
+UI Component
+
+Model and Store--> a way by which you can display data on client side.
+
+
+Client side--> min business logic and max view logic.
+
+Ext.Ajax.request--> implicitly 'get' request if you dont put params. otherwise POST.  if you want some other mehtod use Method property
+
+associations.
+hasMany,hasOne--> one to many and one to one relation.
+if you want bidirectional relation then use belongsTo
+
+Validations:-
+
+XMessgae:"your message",
+X: function(config,value){}
+a regular expression has test and matches function.
+Any string starting with '/' and ending with '/'  is considered as a Regular Expression.
+
+'Ext.data.validations', is deprecated in extjs 5, use validators instead
+
+GRID
+-create model definition
+-create column definition
+-define store and association.
+
+ACtion column----> assign buttons and have listners.
+
+if a column is  booleancolumn then you dont need to define a custom renderer...only truetext and falsetext will do.
+if the column is considered as string then you may want to define a custom renderer function in the template column.
+
+ExtJS 5 training Mumbai Day 4 07/08/2014
+
+MVC/MV(VM) design patterns.
+
+Structure of the APP folder...
+-->view
+-->controllers
+-->store
+-->model
+
+MVC model...structure
+view--> .js files---> view definition(onyl plain design,no event assoc.)
+controller--> event handling logic. Pick up the control , and define event handlers..
+model--> controller delegates the business logic to model.
+                                                supposed ot contain Ext.data.Model .js files
+store--> Ext.data.Store .js --> collection of models.
+Classes are supposed to be designed in a modular function. One file only one class. and class should be very specific.
+
+2 ways to launch the app.--> viewport by default or LAUNCH function
+
+MV(VM)
+Controller is not required if you dont want any intelligence between model and view. (for eg Application submit ..no intelligence required.
+only you need to submit the data and thats it. )
+View and Model should be in sync. You get a 2-way binding.
+
+You have a view controller to bind Model, View and ViewModel together.
+You can integerate MV(VM) in MVC...Simple interation is controlled by MV(VM) and complex interaction is handled by MVC
+
+ViewModel defines the data which is going to be dbound to the view.
+Entire flow should be withn the controller definition
+
+
+controller loaded...view created.....view related obbject created..
+
+
+
+
+ExtJS 5 Mumbai Training day 5 08/08/2014
+
+Anchor: property of component., when assigned, will anchor your component to a particular position.
+This is a layout that enables anchoring of contained elements relative to the container's dimensions. 
+If the container is resized, all anchored items are automatically rerendered according to their anchor rules.
+
+Form Factors
+
+(Sencha touch and extjs share almost 80% library)
+
+ViewModel ccollaboration is broken upon resizing the window.
+
+Ext.Application can extend another application also.
+
+ViewCOntroller: You can bind view with the controller.
+A view needs to have a controller if it needs to handle many different functionality.
+Controller is independent of view.
+
+
+
+Routes/Routers.
+The Router is an ordered set of Ext.app.route.Route definitions that decode a url into a controller function to execute.
+
+url:function
+
+Since we are using SPA, we dont go to external link...we just go to another location of the page..
+normally a # is added. if you want external site, use document.location or start with protocol in the this.redirectTo.
+
+XTemplates...read..Dataview..combine xtemplate with dataview.
+
+Composite element and Draggable/droppable feature.
+
+Sencha CMD 5
+
+IDE --. Sencha architect.
+
+
+
+Regards,
+Bhavik Shah
+
+This email is confidential and subject to important disclaimers and conditions including on offers for the purchase or sale of securities, accuracy and completeness of information, viruses, confidentiality, legal privilege, and legal entity disclaimers, available at http://www.jpmorgan.com/pages/disclosures/email. 

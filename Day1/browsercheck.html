@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+  <script type="text/javascript">
+
+
+        Ext.onReady(function() {
+
+            var browser = "";
+
+            if (Ext.isChrome) {
+                browser = "Chrome";
+            }
+
+            if (Ext.isGecko) {
+                browser = "Gecko";
+            }
+
+            if (Ext.isGecko2) {
+                browser = "Gecko2";
+            }
+
+            if (Ext.isGecko3) {
+                browser = "Gecko3";
+            }
+
+            if (Ext.isIE) {
+                browser = "IE";
+            }
+
+            if (Ext.isIE6) {
+                browser = "IE6";
+            }
+
+            if (Ext.isIE7) {
+                browser = "IE7";
+            }
+
+            if (Ext.isIE8) {
+                browser = "IE8";
+            }
+
+            if (Ext.isOpera) {
+                browser = "Opera";
+            }
+
+            if (Ext.isSafari) {
+                browser = "Safari";
+            }
+
+            if (Ext.isSafari2) {
+                browser = "Safari2";
+            }
+
+            if (Ext.isSafari3) {
+                browser = "Safari3";
+            }
+
+            if (Ext.isSafari4) {
+                browser = "Safari4";
+            }
+
+            var platform = "";
+
+            if (Ext.isAir) {
+                platform = "Air";
+            }
+
+            if (Ext.isLinux) {
+                platform = "Linux";
+            }
+
+            if (Ext.isMac) {
+                platform = "Mac";
+            }
+
+            if (Ext.isWindows) {
+                platform = "Windows ";
+            }
+
+            var msg = "Your browser is " + browser + ", and your platform is " + platform;
+
+            Ext.Msg.alert('Browser and Platform', msg);
+
+
+        });
+        </script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

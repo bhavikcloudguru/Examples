@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>First class</title>
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+    <!--  Importing the client class -->
+    <script type="text/javascript" src="js/Client1.js"></script>
+
+	<script type="text/javascript">
+		//creating an instance of Client
+		var client = Ext.create("MyApp.Client");
+
+		console.log(client.name);
+		
+		client.name = "Madhusudhanan";
+		
+		console.log(client.name);
+
+
+        //with params
+        var client2 = Ext.create("MyApp.Client",{
+            name    : 'Vasumathi',
+            lastName: 'MS',
+            x:10,
+            y:20
+        });
+        
+        console.log(client2.name);
+        
+        var client3 = new MyApp.Client();
+        
+        client3.name="Ram";
+        
+        console.log(client3.name)
+        
+        console.log(client2.x);
+        console.log(client2.y);
+        
+	</script>
+
+</head>
+<body>
+</body>
+</html>

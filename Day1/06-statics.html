@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Statics</title>
+
+     <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+	<script type="text/javascript">
+		
+		Ext.define("MyApp.data.Client",{
+			statics	: {
+				sequence	: 10,
+				nextId		: function(){
+					return ++this.sequence;
+				}
+			},
+	
+			constructor	: function(){
+				 this.id = this.self.nextId();
+		
+				console.log(this.id);
+			}
+		});
+
+
+		var cli =Ext.create("MyApp.data.Client");
+		console.log(MyApp.data.Client.sequence);
+		//cli.nextId();
+		Ext.create("MyApp.data.Client");
+		Ext.create("MyApp.data.Client");
+
+		console.log(MyApp.data.Client.nextId());
+		
+	</script>
+
+</head>
+<body>
+</body>
+</html>

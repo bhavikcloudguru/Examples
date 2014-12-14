@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Configurations</title>
+
+		<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+		<script type="text/javascript">
+			Ext.define("MyApp.data.Invoice", {
+				invoiceId	: 'INV01',
+				config : {
+					client : "",
+					tax : 0.083,
+					subtotal : 0,
+					total : 0
+				},
+
+				constructor : function(config) {
+					var me = this;
+
+					//me.initConfig(config);
+				},
+
+				applySubtotal : function(value) {
+					var me = this;
+					me.setTotal(value + value * me.getTax());
+					return value;
+				},
+
+				applyClient : function(value) {
+					console.log("In applyClient .........................");
+					str = value + ' Client ';
+					console.log("In applyClient " + str);
+					//	this.setClient(str);
+					return value;
+				},
+				applyTax : function(value) {
+					
+					console.log("In applyTax .........................");
+					mytax =  value + 10.5;
+					console.log("In applyTax " + mytax);
+					//this.setTax(mytax);
+					return mytax;
+				},
+				
+				applyInvoiceId	: function (value) {
+					
+					console.log(" In apply InvoiceId "+value);
+					
+				}
+			});
+
+			var invoice = Ext.create("MyApp.data.Invoice", {
+				invoiceId:'asd',
+				client : "Tuxtux Inc",
+				subtotal : 100,
+				total : 108.3
+			});
+
+			console.log(invoice.getClient());
+			console.log(invoice.getSubtotal());
+			console.log(invoice.getTax());
+			console.log(invoice.getTotal());
+
+			invoice.setTax(0.16);
+
+			invoice.setTax(345);
+			console.log(invoice.getTax());
+
+			invoice.setSubtotal(1000);
+
+			console.log(invoice.getTotal());
+			
+			//invoice.setInvoiceId('ABC');
+			
+			//console.log(invoice.getInvoiceId());
+			
+			console.log(invoice.invoiceId);
+
+		</script>
+
+	</head>
+	<body></body>
+</html>

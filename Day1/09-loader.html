@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Loader</title>
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+	<script type="text/javascript">
+		
+		Ext.Loader.setConfig({
+			enabled	: true,
+			paths	: {
+				MyApp	: "loader",
+				//Ext		: "extjs"
+			}
+		});
+		
+		Ext.Loader.setPath("MyApp.models","loader/models");
+		
+		Ext.require("MyApp.models.Movie");
+
+		Ext.onReady(function(){
+			var movie = Ext.create("MyApp.models.Movie",{
+				title 	: "Zoombies attack!",
+				director: "Johnny Doe"
+			});
+	
+			console.log(movie.get("title"));
+		});
+		
+		
+		Ext.require("MyApp.music.Song",function(){
+	
+			var song = Ext.create("MyApp.music.Song",{
+				title 	: "The next thing",
+				autor	: "John Doe",
+				duration: 3.55
+			});
+	
+			console.log(song.get("title"));
+	
+		});
+		
+	</script>
+
+</head>
+<body>
+</body>
+</html>

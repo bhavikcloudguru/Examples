@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>The DomQuery</title>
+
+   <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+	<script type="text/javascript">
+	
+		Ext.onReady(function(){
+			
+			var lis = Ext.DomQuery.select("#main .menu ul li");
+			
+	console.log("LIS :"+ lis);
+	
+	
+	
+				
+			//lis = Ext.get(lis);
+
+			lis.setStyle({
+				display			: "inline",
+				backgroundColor : "#003366",
+				margin			: "3px",
+				color			: "#FFCC00",
+				padding			: "3px 20px",
+				borderRadius	: "10px",
+				boxShadow		: "inset 0 1px 15px #6699CC"
+			});
+			
+			console.log("LIS2 : "+lis);
+			
+			var h1 = Ext.select("#main div[class=content] h1");
+				
+			h1.setStyle("color","#003399");
+			
+			console.log("Lis3 : "+h1);
+		});
+		
+		
+		
+		
+	</script>
+
+</head>
+<body>
+	<div id="main">
+		<div class="menu">
+			<ul>
+				<li>Home</li>
+				<li>About us</li>
+			</ul>
+		</div>
+		<div class="content">
+			<h1>Welcome to Ext JS 4!</h1>
+			<p>This is an example for the DomQuery class.</p>
+		</div>
+	</div>
+</body>
+</html>
