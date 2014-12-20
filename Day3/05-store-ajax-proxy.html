@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Store proxy</title>
+
+		<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/ext-theme-classic.js"></script>
+
+		<script type="text/javascript" src="js/MyApp/model/Invoice.js"></script>
+		<script type="text/javascript" src="overrides/Ext.data.validations.js"></script>
+		<script type="text/javascript" src="js/MyApp/model/Invoice.js"></script>
+		<script type="text/javascript" src="js/MyApp/store/Invoices.js"></script>
+
+		<script type="text/javascript">
+			var store = Ext.create("MyApp.store.Invoices");
+
+			store.load();
+
+			console.log(store.count());
+
+			var str = function() {
+
+				store.each(function(record) {
+					console.log(record.get("name"));
+				});
+
+			};
+
+			store.sync();
+
+console.log(store.count());
+		</script>
+	</head>
+	<body></body>
+</html>

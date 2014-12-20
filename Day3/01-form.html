@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Client form</title>
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/ext-theme-classic.js"></script>
+
+    <script type="text/javascript" src="MyApp/view/clients/Form.js"></script>
+    
+	<style type="text/css">
+	.new-icon{background:transparent 0 0 url(images/page_add.png) no-repeat !important;}
+	.save-icon{background:transparent 0 0 url(images/disk.png) no-repeat !important;}
+	.dele
+	te-icon{background:transparent 0 0 url(images/delete.png) no-repeat !important;}
+	</style>
+
+	<script type="text/javascript">
+Ext.onReady(function(){
+	
+	Ext.create('MyApp.view.clients.Form',{
+		width	: 300,
+		height	: 410,
+		renderTo: Ext.getBody()
+	});
+
+	
+});
+	</script>
+	<style type="text/css">
+	body{padding:10px;}
+	</style>
+</head>
+<body>
+</body>
+</html>

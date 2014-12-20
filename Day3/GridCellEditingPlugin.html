@@ -1,0 +1,33 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Chapter 7 "Gimme the grid"</title>
+
+     
+ 
+</head>
+<body style="padding: 50px">
+</body>
+</html>
+
+<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/ext-theme-classic.js"></script>
+
+<script type="text/javascript" src="MyApp/view/GridCellEditingPlugin.js"></script>
+<script type="text/javascript">
+	Ext.onReady(function(){
+		Ext.Loader.setConfig({
+			enabled:true
+		});
+		var grid = Ext.create('MyApp.view.GridCellEditingPlugin');
+		Ext.create('Ext.container.Viewport', {
+		    layout:{
+		        type:'hbox',
+		        align:'stretch'
+		    },
+		    items:[grid]
+		});
+	});
+</script>

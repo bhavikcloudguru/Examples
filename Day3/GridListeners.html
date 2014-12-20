@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title id="page-title">Account Manager</title>
+
+   <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css">
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/ext-all.js"></script> 
+       <script type="text/javascript" src="http://cdn.sencha.com/ext/trial/5.0.0/build/packages/ext-theme-classic/build/ext-theme-classic.js"></script>
+
+<script type="text/javascript" src="MyApp/view/GridListeners.js">
+</script>
+
+<script type="text/javascript">
+	Ext.onReady(function() {
+		Ext.Loader.setConfig({
+			enabled : true
+		});
+		var grid = Ext.create('MyApp.view.Grid', {
+			listeners : { //step 1
+				itemclick : function(view, record, htmlItem, index,
+						eventObject, opts) {
+					form.loadRecord(record);
+				}
+			},
+		}), 
+		form = Ext.create('MyApp.view.Form', {
+			buttons : [ {
+				text : 'Reset',
+				handler : function() {
+					this.up('form').getForm().reset();
+				}
+			}, {
+				text : 'Save',
+				formBind : true,
+				disabled : true,
+				scope : this,
+				handler : function() {
+					var selectionModel = grid.getSelectionModel(), record;//step 2
+					record = selectionModel.getSelection()[0];
+					record.set(form.getValues());//step 3
+					grid.getView().refresh();//step 4
+				}
+			} ]
+		});
+		Ext.create('Ext.container.Viewport', {
+			layout : {
+				type : 'hbox',
+				align : 'stretch'
+			},
+			items : [ grid, form ]
+		//step 6
+		});
+	});
+</script>
+</head>
+<body>
+
+</body>
+</html>
